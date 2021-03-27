@@ -124,7 +124,7 @@ panels:
           refId: A
       timeFrom: null
       timeShift: null
-      title: Second Panel
+      title: Stat Panel
       type: stat
 schemaVersion: 26
 style: dark
@@ -138,4 +138,4 @@ timepicker: {}
 timezone: ""
 title: New
 uid: B-1hmCQGz
-version: 85
+version: 86
