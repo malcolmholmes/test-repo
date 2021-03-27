@@ -60,7 +60,7 @@ panels:
       timeFrom: null
       timeRegions: []
       timeShift: null
-      title: Even Better Title
+      title: One More Title mk4
       tooltip:
         shared: true
         sort: 0
@@ -100,4 +100,4 @@ timepicker: {}
 timezone: ""
 title: New
 uid: B-1hmCQGz
-version: 75
+version: 81
