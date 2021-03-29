@@ -49,7 +49,7 @@ panels:
           refId: A
       timeFrom: null
       timeShift: null
-      title: Panel Title
+      title: Stat panel
       type: stat
 schemaVersion: 26
 style: dark
@@ -63,4 +63,4 @@ timepicker: {}
 timezone: ""
 title: New
 uid: PN4CSzlGz
-version: 3
+version: 4
