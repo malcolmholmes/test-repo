@@ -21,11 +21,15 @@ panels:
             thresholds:
                 mode: absolute
                 steps:
-                    - color: green
+                    - color: purple
                       value: null
                     - color: orange
                       value: 70
-        overrides: []
+        overrides:
+            - matcher:
+                id: byName
+                options: Time
+              properties: []
       gridPos:
         h: 9
         w: 12
@@ -33,7 +37,7 @@ panels:
         "y": 0
       id: 2
       options:
-        colorMode: value
+        colorMode: background
         graphMode: area
         justifyMode: auto
         orientation: auto
@@ -63,4 +67,4 @@ timepicker: {}
 timezone: ""
 title: New
 uid: PN4CSzlGz
-version: 5
+version: 6
