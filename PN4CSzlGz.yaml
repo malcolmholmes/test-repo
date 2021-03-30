@@ -23,8 +23,8 @@ panels:
                 steps:
                     - color: green
                       value: null
-                    - color: red
-                      value: 80
+                    - color: orange
+                      value: 70
         overrides: []
       gridPos:
         h: 9
@@ -49,7 +49,7 @@ panels:
           refId: A
       timeFrom: null
       timeShift: null
-      title: Stat panel
+      title: Meaning of Life
       type: stat
 schemaVersion: 26
 style: dark
@@ -63,4 +63,4 @@ timepicker: {}
 timezone: ""
 title: New
 uid: PN4CSzlGz
-version: 4
+version: 5
