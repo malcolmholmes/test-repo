@@ -51,7 +51,7 @@ panels:
           refId: A
       timeFrom: null
       timeShift: null
-      title: Victor's Panel
+      title: Victor's Super Duper Panel
       type: stat
 schemaVersion: 27
 style: dark
@@ -65,4 +65,4 @@ timepicker: {}
 timezone: ""
 title: Super New
 uid: It0N3GlGz
-version: 2
+version: 4
