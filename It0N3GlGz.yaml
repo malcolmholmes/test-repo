@@ -34,16 +34,17 @@ panels:
         "y": 0
       id: 2
       options:
-        colorMode: value
+        colorMode: background
         graphMode: area
-        justifyMode: auto
+        justifyMode: center
         orientation: auto
         reduceOptions:
             calcs:
                 - lastNotNull
             fields: ""
             values: false
-        text: {}
+        text:
+            valueSize: 50
         textMode: auto
       pluginVersion: 7.5.1
       targets:
@@ -51,7 +52,7 @@ panels:
           refId: A
       timeFrom: null
       timeShift: null
-      title: Victor's Super Duper Panel
+      title: Mick's Super Panel
       type: stat
 schemaVersion: 27
 style: dark
@@ -65,4 +66,4 @@ timepicker: {}
 timezone: ""
 title: Super New
 uid: It0N3GlGz
-version: 4
+version: 6
