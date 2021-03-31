@@ -35,7 +35,7 @@ panels:
       id: 2
       options:
         colorMode: value
-        graphMode: area
+        graphMode: none
         justifyMode: center
         orientation: auto
         reduceOptions:
@@ -69,4 +69,4 @@ timepicker: {}
 timezone: ""
 title: Super New
 uid: It0N3GlGz
-version: 7
+version: 8
