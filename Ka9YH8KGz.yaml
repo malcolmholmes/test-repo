@@ -78,7 +78,7 @@ panels:
       timeFrom: null
       timeRegions: []
       timeShift: null
-      title: PVCs without Pods
+      title: PVCs without a Pod
       tooltip:
         shared: true
         sort: 0
@@ -414,4 +414,4 @@ timepicker: {}
 timezone: utc
 title: Lingering PVs and PVCs
 uid: Ka9YH8KGz
-version: 2
+version: 3
