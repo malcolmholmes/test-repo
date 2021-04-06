@@ -1,0 +1,417 @@
+annotations:
+    list:
+        - builtIn: 1
+          datasource: -- Grafana --
+          enable: true
+          hide: true
+          iconColor: rgba(0, 211, 255, 1)
+          name: Annotations & Alerts
+          type: dashboard
+editable: true
+gnetId: null
+graphTooltip: 0
+id: 262
+iteration: 1.617719462049e+12
+links: []
+panels:
+    - aliasColors: {}
+      bars: false
+      dashLength: 10
+      dashes: false
+      datasource: ops-cortex
+      fieldConfig:
+        defaults: {}
+        overrides: []
+      fill: 1
+      fillGradient: 0
+      gridPos:
+        h: 5
+        w: 12
+        x: 0
+        "y": 0
+      hiddenSeries: false
+      id: 4
+      interval: 1m
+      legend:
+        avg: false
+        current: false
+        max: false
+        min: false
+        show: true
+        total: false
+        values: false
+      lines: true
+      linewidth: 1
+      nullPointMode: null as zero
+      options:
+        alertThreshold: true
+      percentage: false
+      pluginVersion: 7.5.1
+      pointradius: 2
+      points: false
+      renderer: flot
+      seriesOverrides: []
+      spaceLength: 10
+      stack: false
+      steppedLine: false
+      targets:
+        - expr: |-
+            count by (cluster, namespace) (
+              max without(instance) (
+                kube_persistentvolumeclaim_info{namespace=~"[[namespace]]", cluster=~"[[cluster]]"}
+              )
+              unless (
+                max without(instance) (
+                  kube_persistentvolumeclaim_info{namespace=~"[[namespace]]", cluster=~"[[cluster]]"}
+                )
+                * on (cluster, namespace, persistentvolumeclaim) group_left
+                sum without (pod, instance) (kube_pod_spec_volumes_persistentvolumeclaims_info)
+              )
+            )
+          format: time_series
+          instant: false
+          interval: ""
+          intervalFactor: 4
+          legendFormat: ""
+          refId: B
+      thresholds: []
+      timeFrom: null
+      timeRegions: []
+      timeShift: null
+      title: PVCs without Pods
+      tooltip:
+        shared: true
+        sort: 0
+        value_type: individual
+      transformations: []
+      type: graph
+      xaxis:
+        buckets: null
+        mode: time
+        name: null
+        show: true
+        values: []
+      yaxes:
+        - format: short
+          label: null
+          logBase: 1
+          max: null
+          min: null
+          show: true
+        - format: short
+          label: null
+          logBase: 1
+          max: null
+          min: null
+          show: true
+      yaxis:
+        align: false
+        alignLevel: null
+    - aliasColors: {}
+      bars: false
+      dashLength: 10
+      dashes: false
+      datasource: ops-cortex
+      fieldConfig:
+        defaults: {}
+        overrides: []
+      fill: 1
+      fillGradient: 0
+      gridPos:
+        h: 5
+        w: 12
+        x: 12
+        "y": 0
+      hiddenSeries: false
+      id: 3
+      interval: 1m
+      legend:
+        avg: false
+        current: false
+        max: false
+        min: false
+        show: true
+        total: false
+        values: false
+      lines: true
+      linewidth: 1
+      nullPointMode: null as zero
+      options:
+        alertThreshold: true
+      percentage: false
+      pluginVersion: 7.5.1
+      pointradius: 2
+      points: false
+      renderer: flot
+      seriesOverrides: []
+      spaceLength: 10
+      stack: false
+      steppedLine: false
+      targets:
+        - expr: "count by (cluster) (\n  max without (instance) (\n    kube_persistentvolume_info{\n      cluster=~\"[[cluster]]\",\n    }\n  )\n  unless (\n    max without (instance) (\n      kube_persistentvolume_info{\n        cluster=~\"[[cluster]]\",\n      }\n    )\n    * on (cluster, persistentvolume) group_left\n    label_replace(\n      kube_persistentvolumeclaim_info{\n        cluster=~\"[[cluster]]\",\n      }, \n      \"persistentvolume\", \"$1\", \"volumename\", \"(.*)\"\n    )\n  )\n)\n"
+          format: time_series
+          instant: false
+          interval: ""
+          intervalFactor: 4
+          legendFormat: ""
+          refId: B
+      thresholds: []
+      timeFrom: null
+      timeRegions: []
+      timeShift: null
+      title: PVs without a PVC
+      tooltip:
+        shared: true
+        sort: 0
+        value_type: individual
+      transformations: []
+      type: graph
+      xaxis:
+        buckets: null
+        mode: time
+        name: null
+        show: true
+        values: []
+      yaxes:
+        - format: short
+          label: null
+          logBase: 1
+          max: null
+          min: null
+          show: true
+        - format: short
+          label: null
+          logBase: 1
+          max: null
+          min: null
+          show: true
+      yaxis:
+        align: false
+        alignLevel: null
+    - datasource: ops-cortex
+      fieldConfig:
+        defaults:
+            custom:
+                align: null
+                filterable: false
+            mappings: []
+            thresholds:
+                mode: absolute
+                steps:
+                    - color: green
+                      value: null
+                    - color: red
+                      value: 80
+        overrides:
+            - matcher:
+                id: byName
+                options: __name__
+              properties:
+                - id: custom.width
+                  value: 353
+            - matcher:
+                id: byName
+                options: persistentvolumeclaim
+              properties:
+                - id: custom.width
+                  value: 332
+      gridPos:
+        h: 29
+        w: 12
+        x: 0
+        "y": 5
+      id: 2
+      options:
+        showHeader: true
+        sortBy:
+            - desc: false
+              displayName: namespace
+      pluginVersion: 7.5.1
+      targets:
+        - expr: |-
+            max by (cluster, namespace, persistentvolumeclaim)(
+              max without(instance) (
+                kube_persistentvolumeclaim_info{namespace=~"[[namespace]]", cluster=~"[[cluster]]"}
+              )
+              unless (
+                max without(instance) (
+                  kube_persistentvolumeclaim_info{namespace=~"[[namespace]]", cluster=~"[[cluster]]"}
+                )
+                * on (cluster, namespace, persistentvolumeclaim) group_left
+                sum without (pod, instance) (kube_pod_spec_volumes_persistentvolumeclaims_info)
+              )
+            )
+          format: table
+          instant: true
+          interval: ""
+          legendFormat: ""
+          refId: B
+      timeFrom: null
+      timeShift: null
+      title: PVCs without a Pod
+      transformations:
+        - id: organize
+          options:
+            excludeByName:
+                Time: true
+                Value: true
+            indexByName: {}
+            renameByName: {}
+      type: table
+    - datasource: ops-cortex
+      fieldConfig:
+        defaults:
+            custom:
+                align: null
+                filterable: false
+            mappings: []
+            thresholds:
+                mode: absolute
+                steps:
+                    - color: green
+                      value: null
+                    - color: red
+                      value: 80
+        overrides:
+            - matcher:
+                id: byName
+                options: __name__
+              properties:
+                - id: custom.width
+                  value: 353
+      gridPos:
+        h: 29
+        w: 12
+        x: 12
+        "y": 5
+      id: 5
+      options:
+        showHeader: true
+        sortBy:
+            - desc: false
+              displayName: cluster
+      pluginVersion: 7.5.1
+      targets:
+        - expr: "(\n  max without (instance) (\n    kube_persistentvolume_info{\n      cluster=~\"[[cluster]]\",\n    }\n  )\n  unless (\n    max without (instance) (\n      kube_persistentvolume_info{\n        cluster=~\"[[cluster]]\",\n      }\n    )\n    * on (cluster, persistentvolume) group_left\n    label_replace(\n      kube_persistentvolumeclaim_info{\n        cluster=~\"[[cluster]]\",\n      }, \n      \"persistentvolume\", \"$1\", \"volumename\", \"(.*)\"\n    )\n  )\n)\n"
+          format: table
+          instant: true
+          interval: ""
+          legendFormat: ""
+          refId: B
+      timeFrom: null
+      timeShift: null
+      title: PVs without a PVC
+      transformations:
+        - id: organize
+          options:
+            excludeByName:
+                Time: true
+                Value: true
+            indexByName: {}
+            renameByName: {}
+      type: table
+refresh: 1m
+schemaVersion: 27
+style: dark
+tags: []
+templating:
+    list:
+        - allValue: null
+          current:
+            selected: true
+            text:
+                - All
+            value:
+                - $__all
+          datasource: ops-cortex
+          definition: label_values(kube_pod_info, cluster)
+          description: null
+          error:
+            config:
+                data: {}
+                headers:
+                    Content-Type: application/x-www-form-urlencoded
+                    X-Grafana-Org-Id: 1
+                hideFromInspector: true
+                method: POST
+                retry: 0
+                url: api/datasources/proxy/33/api/v1/series?match%5B%5D=kube_pod_info&start=1617114662&end=1617719462
+            data:
+                error: Bad Request
+                message: Authentication to data source failed
+                response: Authentication to data source failed
+            message: Authentication to data source failed
+            status: 400
+            statusText: Bad Request
+          hide: 0
+          includeAll: true
+          label: null
+          multi: true
+          name: cluster
+          options: []
+          query:
+            query: label_values(kube_pod_info, cluster)
+            refId: ops-cortex-cluster-Variable-Query
+          refresh: 1
+          regex: ""
+          skipUrlSync: false
+          sort: 0
+          tagValuesQuery: ""
+          tags: []
+          tagsQuery: ""
+          type: query
+          useTags: false
+        - allValue: null
+          current:
+            selected: true
+            tags: []
+            text:
+                - All
+            value:
+                - $__all
+          datasource: ops-cortex
+          definition: label_values(kube_pod_info{cluster=~"$cluster"}, namespace)
+          description: null
+          error:
+            config:
+                data: {}
+                headers:
+                    Content-Type: application/x-www-form-urlencoded
+                    X-Grafana-Org-Id: 1
+                hideFromInspector: true
+                method: POST
+                retry: 0
+                url: api/datasources/proxy/33/api/v1/series?match%5B%5D=kube_pod_info%7Bcluster%3D%7E%22%28%29%22%7D&start=1617114662&end=1617719462
+            data:
+                error: Bad Request
+                message: Authentication to data source failed
+                response: Authentication to data source failed
+            message: Authentication to data source failed
+            status: 400
+            statusText: Bad Request
+          hide: 0
+          includeAll: true
+          label: null
+          multi: true
+          name: namespace
+          options: []
+          query:
+            query: label_values(kube_pod_info{cluster=~"$cluster"}, namespace)
+            refId: ops-cortex-namespace-Variable-Query
+          refresh: 1
+          regex: ""
+          skipUrlSync: false
+          sort: 0
+          tagValuesQuery: ""
+          tags: []
+          tagsQuery: ""
+          type: query
+          useTags: false
+time:
+    from: now-7d
+    to: now
+timepicker: {}
+timezone: utc
+title: Lingering PVs and PVCs
+uid: Ka9YH8KGz
+version: 2
