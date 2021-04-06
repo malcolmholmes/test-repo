@@ -248,7 +248,7 @@ panels:
           refId: B
       timeFrom: null
       timeShift: null
-      title: PVCs without a Pod
+      title: PVCs without Pods
       transformations:
         - id: organize
           options:
@@ -414,4 +414,4 @@ timepicker: {}
 timezone: utc
 title: Lingering PVs and PVCs
 uid: Ka9YH8KGz
-version: 3
+version: 5
