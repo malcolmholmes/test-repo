@@ -11,7 +11,7 @@ editable: true
 gnetId: null
 graphTooltip: 0
 id: 262
-iteration: 1.617719462049e+12
+iteration: 1.617782590197e+12
 links: []
 panels:
     - aliasColors: {}
@@ -202,6 +202,7 @@ panels:
                       value: null
                     - color: red
                       value: 80
+            unit: percent
         overrides:
             - matcher:
                 id: byName
@@ -300,7 +301,7 @@ panels:
           refId: B
       timeFrom: null
       timeShift: null
-      title: PVs without a PVC
+      title: PVs without PVCs
       transformations:
         - id: organize
           options:
@@ -335,7 +336,7 @@ templating:
                 hideFromInspector: true
                 method: POST
                 retry: 0
-                url: api/datasources/proxy/33/api/v1/series?match%5B%5D=kube_pod_info&start=1617114662&end=1617719462
+                url: api/datasources/proxy/33/api/v1/series?match%5B%5D=kube_pod_info&start=1617177790&end=1617782590
             data:
                 error: Bad Request
                 message: Authentication to data source failed
@@ -381,7 +382,7 @@ templating:
                 hideFromInspector: true
                 method: POST
                 retry: 0
-                url: api/datasources/proxy/33/api/v1/series?match%5B%5D=kube_pod_info%7Bcluster%3D%7E%22%28%29%22%7D&start=1617114662&end=1617719462
+                url: api/datasources/proxy/33/api/v1/series?match%5B%5D=kube_pod_info%7Bcluster%3D%7E%22%28%29%22%7D&start=1617177791&end=1617782591
             data:
                 error: Bad Request
                 message: Authentication to data source failed
@@ -414,4 +415,4 @@ timepicker: {}
 timezone: utc
 title: Lingering PVs and PVCs
 uid: Ka9YH8KGz
-version: 5
+version: 6
