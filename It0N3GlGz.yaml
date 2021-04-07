@@ -34,8 +34,8 @@ panels:
         "y": 0
       id: 2
       options:
-        colorMode: background
-        graphMode: area
+        colorMode: value
+        graphMode: none
         justifyMode: center
         orientation: auto
         reduceOptions:
@@ -44,15 +44,18 @@ panels:
             fields: ""
             values: false
         text:
-            valueSize: 50
+            valueSize: 90
         textMode: auto
       pluginVersion: 7.5.1
       targets:
         - queryType: randomWalk
           refId: A
+        - hide: false
+          queryType: randomWalk
+          refId: B
       timeFrom: null
       timeShift: null
-      title: Mick's Super Panel
+      title: Sam's Super Panel
       type: stat
 schemaVersion: 27
 style: dark
@@ -66,4 +69,4 @@ timepicker: {}
 timezone: ""
 title: Super New
 uid: It0N3GlGz
-version: 6
+version: 8
