@@ -11,7 +11,7 @@ editable: true
 gnetId: null
 graphTooltip: 0
 id: 262
-iteration: 1.617782590197e+12
+iteration: 1.617915557239e+12
 links: []
 panels:
     - aliasColors: {}
@@ -26,7 +26,7 @@ panels:
       fillGradient: 0
       gridPos:
         h: 5
-        w: 12
+        w: 6
         x: 0
         "y": 0
       hiddenSeries: false
@@ -119,8 +119,8 @@ panels:
       fillGradient: 0
       gridPos:
         h: 5
-        w: 12
-        x: 12
+        w: 6
+        x: 6
         "y": 0
       hiddenSeries: false
       id: 3
@@ -202,6 +202,58 @@ panels:
                       value: null
                     - color: red
                       value: 80
+        overrides:
+            - matcher:
+                id: byName
+                options: __name__
+              properties:
+                - id: custom.width
+                  value: 353
+      gridPos:
+        h: 5
+        w: 5
+        x: 12
+        "y": 0
+      id: 5
+      options:
+        showHeader: true
+        sortBy:
+            - desc: false
+              displayName: cluster
+      pluginVersion: 7.5.1
+      targets:
+        - expr: "(\n  max without (instance) (\n    kube_persistentvolume_info{\n      cluster=~\"[[cluster]]\",\n    }\n  )\n  unless (\n    max without (instance) (\n      kube_persistentvolume_info{\n        cluster=~\"[[cluster]]\",\n      }\n    )\n    * on (cluster, persistentvolume) group_left\n    label_replace(\n      kube_persistentvolumeclaim_info{\n        cluster=~\"[[cluster]]\",\n      }, \n      \"persistentvolume\", \"$1\", \"volumename\", \"(.*)\"\n    )\n  )\n)\n"
+          format: table
+          instant: true
+          interval: ""
+          legendFormat: ""
+          refId: B
+      timeFrom: null
+      timeShift: null
+      title: PVs without PVCs
+      transformations:
+        - id: organize
+          options:
+            excludeByName:
+                Time: true
+                Value: true
+            indexByName: {}
+            renameByName: {}
+      type: table
+    - datasource: ops-cortex
+      fieldConfig:
+        defaults:
+            custom:
+                align: null
+                filterable: false
+            mappings: []
+            thresholds:
+                mode: absolute
+                steps:
+                    - color: green
+                      value: null
+                    - color: red
+                      value: 80
             unit: percent
         overrides:
             - matcher:
@@ -217,10 +269,10 @@ panels:
                 - id: custom.width
                   value: 332
       gridPos:
-        h: 29
-        w: 12
-        x: 0
-        "y": 5
+        h: 5
+        w: 6
+        x: 17
+        "y": 0
       id: 2
       options:
         showHeader: true
@@ -259,58 +311,6 @@ panels:
             indexByName: {}
             renameByName: {}
       type: table
-    - datasource: ops-cortex
-      fieldConfig:
-        defaults:
-            custom:
-                align: null
-                filterable: false
-            mappings: []
-            thresholds:
-                mode: absolute
-                steps:
-                    - color: green
-                      value: null
-                    - color: red
-                      value: 80
-        overrides:
-            - matcher:
-                id: byName
-                options: __name__
-              properties:
-                - id: custom.width
-                  value: 353
-      gridPos:
-        h: 29
-        w: 12
-        x: 12
-        "y": 5
-      id: 5
-      options:
-        showHeader: true
-        sortBy:
-            - desc: false
-              displayName: cluster
-      pluginVersion: 7.5.1
-      targets:
-        - expr: "(\n  max without (instance) (\n    kube_persistentvolume_info{\n      cluster=~\"[[cluster]]\",\n    }\n  )\n  unless (\n    max without (instance) (\n      kube_persistentvolume_info{\n        cluster=~\"[[cluster]]\",\n      }\n    )\n    * on (cluster, persistentvolume) group_left\n    label_replace(\n      kube_persistentvolumeclaim_info{\n        cluster=~\"[[cluster]]\",\n      }, \n      \"persistentvolume\", \"$1\", \"volumename\", \"(.*)\"\n    )\n  )\n)\n"
-          format: table
-          instant: true
-          interval: ""
-          legendFormat: ""
-          refId: B
-      timeFrom: null
-      timeShift: null
-      title: PVs without PVCs
-      transformations:
-        - id: organize
-          options:
-            excludeByName:
-                Time: true
-                Value: true
-            indexByName: {}
-            renameByName: {}
-      type: table
 refresh: 1m
 schemaVersion: 27
 style: dark
@@ -336,7 +336,7 @@ templating:
                 hideFromInspector: true
                 method: POST
                 retry: 0
-                url: api/datasources/proxy/33/api/v1/series?match%5B%5D=kube_pod_info&start=1617177790&end=1617782590
+                url: api/datasources/proxy/33/api/v1/series?match%5B%5D=kube_pod_info&start=1617310758&end=1617915558
             data:
                 error: Bad Request
                 message: Authentication to data source failed
@@ -382,7 +382,7 @@ templating:
                 hideFromInspector: true
                 method: POST
                 retry: 0
-                url: api/datasources/proxy/33/api/v1/series?match%5B%5D=kube_pod_info%7Bcluster%3D%7E%22%28%29%22%7D&start=1617177791&end=1617782591
+                url: api/datasources/proxy/33/api/v1/series?match%5B%5D=kube_pod_info%7Bcluster%3D%7E%22%28%29%22%7D&start=1617310758&end=1617915558
             data:
                 error: Bad Request
                 message: Authentication to data source failed
@@ -415,4 +415,4 @@ timepicker: {}
 timezone: utc
 title: Lingering PVs and PVCs
 uid: Ka9YH8KGz
-version: 7
+version: 8
